@@ -1,5 +1,9 @@
 package lab5.Event;
-
+/**
+ * 
+ * @author samuelgraden
+ *
+ */
 public class Event {
 
 	private int ID;
