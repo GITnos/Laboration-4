@@ -7,12 +7,14 @@ public class Customer {
 	private int gather;
 	private int checkout;
 	
-	public Customer(int id,Time time) {
+	Time time;
+	
+	public Customer(int id) {
 		
 		this.id = id;
-		this.arrival = time.arrival();
-		this.gather = time.gather();
-		this.checkout = time.gather;
+		this.arrival = State.arrival();
+		this.gather = State.gather();
+		this.checkout = State.gather();
 		
 		
 	}
