@@ -1,5 +1,9 @@
-package lab5.Events;
+package lab5.Event;
 
-public class EventStart {
+public class EventStart extends Event{
 
+	@Override
+	public void run(){
+		
+	}
 }
