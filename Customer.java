@@ -1,14 +1,18 @@
 package lab5.State;
-
+/**
+ * 
+ * @author samuelgraden
+ *
+ */
 public class Customer {
 	static private int idCounter =1;
 	private int id;
-	
+
 	private int arrival;
 	private int gather;
 	private int checkout;
 	
-	Time time;
+	private Time time;
 	
 	public Customer(int id) {
 		idCounter++;
@@ -19,7 +23,23 @@ public class Customer {
 		
 		
 	}
-	public int getidCounter() {
+	
+	public static int getIdCounter() {
 		return idCounter;
+	}
+	public int getId() {
+		return id;
+	}
+	public int getArrival() {
+		return arrival;
+	}
+	public int getGather() {
+		return gather;
+	}
+	public int getCheckout() {
+		return checkout;
+	}
+	public Time getTime() {
+		return time;
 	}
 }
