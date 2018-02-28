@@ -1,5 +1,11 @@
-package lab5.Events;
+package lab5.Event;
 
 public class Event {
 
+	
+	public void run() {
+		
+	}
+	
 }
+
