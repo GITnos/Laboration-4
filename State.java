@@ -7,6 +7,7 @@ public class State {
 	private double lower;
 	private double lambda;
 	private Time time;
+	public boolean STOP = false;
 	
 	public State(double dLower, double dUpper, long lSeed, double dLambda) {
 		seed = lSeed;
