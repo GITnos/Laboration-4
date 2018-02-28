@@ -18,23 +18,20 @@ public class Time {
 	randUni = new UniformRandomStream(lower, upper);
   }
  
-  public void arrival(){
-    randExp.next();
+  public double getArrival(){
+    return randExp.next();
   }
   
-  public void gather(){
-    randUni.next();
+  public double getGather(){
+    return randUni.next();
   }
   
-  public void Checkout(){
-    randUni.next();
+  public double getCheckout(){
+    return randUni.next();
   }
   
   public double getTime(){
     return currentTime;
   }
     
-  
-  
- 
 }
