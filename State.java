@@ -23,4 +23,16 @@ public class State {
 		time = new Time(lower, upper, lambda);
 	}
 	
+	public double getArrival() {
+		return time.getArrival();
+	}
+	
+	public double getCheckout(){
+		return time.getCheckout();
+	}
+	
+	public double getGather() {
+		return time.getGather();
+	}
+	
 }
