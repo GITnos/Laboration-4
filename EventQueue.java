@@ -26,7 +26,7 @@ public class EventQueue {
 			double sumTimeBefore = before.getTime();
 			double sumTimeNext = next.getTime();
 			
-			if((sumTime >= sumTimeBefore) && (sumTime <= sumTimeNext)){
+			if((sumTime >= sumTimeBefore) && (sumTime <=sumTimeNext)){
 				EventList.add(i,e);
 				return true;
 			}
