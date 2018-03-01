@@ -2,13 +2,11 @@ package lab5.Events;
 
 import java.util.ArrayList;
 
-import lab5.Sim;
-
 public class EventQueue {
 
 	static ArrayList<Event> EventList = new ArrayList();
 
-	public void EventQueue() {
+	public EventQueue() {
 		EventList.add(0,new EventStart());
 
 		//EventList.add(new EventEnd());
