@@ -1,4 +1,4 @@
-package lab5.Event;
+package lab5.Events;
 /**
  * 
  * @author samuelgraden
@@ -6,15 +6,14 @@ package lab5.Event;
  */
 public class Event {
 
-	private int ID;
+	private int id;
 
 	public void run() {
-
+		
 	}
 
-	public int getID() {
-		return ID;
+	public int getId() {
+		return id;
 	}
 
 }
-
