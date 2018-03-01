@@ -1,5 +1,16 @@
 package lab5.Events;
 
-public class EventClose {
+import lab5.State.Customer;
 
+public class EventClose extends Event{
+
+	@Override
+	public void run(Customer customer) {
+		
+	}
+	
+	@Override
+	public double getTime() {
+		return Integer.MAX_VALUE;
+	}
 }
