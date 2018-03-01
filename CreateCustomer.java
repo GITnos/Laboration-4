@@ -1,9 +1,13 @@
-package lab5.state;
+package lab5.State;
 
 public class CreateCustomer {
 	
-	public void CreateCustomer(int n) {
-		Customer a = new Customer(n);
+	//public void CreateCustomer() {
+		
+	//}
+	
+	public Customer newCustomer(double dArrival, double dCheckout, double dGather) {
+		return new Customer(dArrival, dCheckout,dGather);
 	}
 }
 
