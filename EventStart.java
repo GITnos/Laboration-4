@@ -6,7 +6,7 @@ public class EventStart extends Event{
 
 	@Override
 	public void run(Customer customer){
-		
+		EventQueue.add(new EventArrive());
 	}
 	
 	@Override
