@@ -33,4 +33,9 @@ public class Customer {
 	public double getCheckout() {
 		return checkout;
 	}
+	public double getAllTime() {
+		
+		return this.arrival + this.gather + this.checkout;
+		
+	}
 }
