@@ -13,7 +13,7 @@ public class EventCheckout extends Event{
 	@Override
 	public double getTime() {
 		int id = this.getId();
-		return Sim.customerList.get(id).getCheckout();
+		return Sim.customerList.get(id).getArrival()+Sim.customerList.get(id).getGather();
 	}
 
 }
