@@ -1,24 +1,13 @@
-package lab5.Event;
+package lab5.Events;
 
-import lab5.State.StateStore;
+import lab5.State.Customer;
 
-public class EventArrive extends Event{
-
-	
+public class EventArrive extends Event{	
 	@Override
-	public void run() {
-		
-		StateStore.createCustomer()
-		
-		EventArrive eA = new EventArrive();
-		
-		eA.setID();
-		
+  public void run(Customer customer) {
+		super.run(customer);
 		EventQueue.add(new EventArrive());
 		EventQueue.add(new EventGather());
-		EventQueue.add(new EventCheckout());
-		
-		
 	}
 	
 }
