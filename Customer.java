@@ -2,44 +2,35 @@ package lab5.State;
 /**
  * 
  * @author samuelgraden
- *
+ * 
  */
 public class Customer {
-	static private int idCounter =1;
 	private int id;
-
-	private int arrival;
-	private int gather;
-	private int checkout;
 	
-	private Time time;
+	// Arrival times
+	private double arrival;
+	private double checkout;
+	private double gather;
 	
-	public Customer(int id) {
-		idCounter++;
+	public Customer(int id, double dArrival, double dCheckout, double dGather) {
 		this.id = id;
-		this.arrival = State.arrival();
-		this.gather = State.gather();
-		this.checkout = State.gather();
+		this.arrival = dArrival;
+		this.gather = dGather;
+		this.checkout = dCheckout;
 		
 		
 	}
 	
-	public static int getIdCounter() {
-		return idCounter;
-	}
 	public int getId() {
 		return id;
 	}
-	public int getArrival() {
+	public double getArrival() {
 		return arrival;
 	}
-	public int getGather() {
+	public double getGather() {
 		return gather;
 	}
-	public int getCheckout() {
+	public double getCheckout() {
 		return checkout;
-	}
-	public Time getTime() {
-		return time;
 	}
 }
