@@ -24,6 +24,12 @@ public class State {
 		time = new Time(lower, upper, lambda);
 	}
 	
+	public Customer createCustomer() {
+		Customer customer = new Customer(this.getArrival(),this.getGather(),this.getGather());
+		customerList.add(customer);
+		return customer;
+	}
+	
 	public double getArrival() {
 		return time.getArrival();
 	}
