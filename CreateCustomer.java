@@ -3,8 +3,14 @@ package lab5.State;
 public class CreateCustomer {
 // Used to create all customers.
 	
-	public Customer newCustomer(double dArrival, double dCheckout, double dGather) {
+	private int numCustomers = 0;
+	double currentTime = 0;
+	// Total number of customers.
+	
+	public Customer newCustomer(double dArrival, double dCheckout, double dGather, double dTravelTime) {
+		Customer c = new Customer(dArrival, dCheckout, dGather, numCustomers);
+		numCustomers++;
 		// Returns a new customer.
-		return new Customer(dArrival, dCheckout,dGather);
+		return c;
 	}
 }
