@@ -13,9 +13,9 @@ public class Customer {
 	private double checkout;
 	private double gather;
 
-	public Customer(double dArrival, double dCheckout, double dGather, double dArriveTime, int iId) {
+	public Customer(double dArrival, double dCheckout, double dGather, int iId) {
 		this.id = iId;
-		this.arrival = dArrival + dArriveTime;
+		this.arrival = dArrival;
 
 		this.gather = dGather;
 		this.checkout = dCheckout;
