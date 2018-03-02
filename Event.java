@@ -1,5 +1,7 @@
 package lab5.Events;
 import lab5.State.Customer;
+import lab5.State.State;
+import lab5.State.StateStore;
 /**
  * 
  * @author samuelgraden
@@ -9,7 +11,7 @@ public class Event {
 
 	private int id;
 
-	public void run(Customer customer) {
+	public void run(StateStore state) {
 		
 	}
 
