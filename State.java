@@ -1,5 +1,9 @@
 package lab5.State;
 
+import java.util.ArrayList;
+
+import lab5.Sim;
+
 public class State {
 	
 	private long seed;
@@ -22,12 +26,6 @@ public class State {
 		lower = dLower;
 		lambda = dLambda;
 		time = new Time(lower, upper, lambda);
-	}
-	
-	public Customer createCustomer() {
-		Customer customer = new Customer(this.getArrival(),this.getGather(),this.getGather());
-		customerList.add(customer);
-		return customer;
 	}
 	
 	public double getArrival() {
