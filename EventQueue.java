@@ -2,11 +2,13 @@ package lab5.Events;
 
 import java.util.ArrayList;
 
+import lab5.Sim;
+
 public class EventQueue {
 
-	static ArrayList<Event> EventList = new ArrayList();
+	public static ArrayList<Event> EventList = new ArrayList();
 
-	public EventQueue() {
+	public void EventQueue() {
 		EventList.add(0,new EventStart());
 
 		//EventList.add(new EventEnd());
@@ -24,7 +26,7 @@ public class EventQueue {
 			double sumTimeBefore = before.getTime();
 			double sumTimeNext = next.getTime();
 			
-			if((sumTime >= sumTimeBefore) && (sumTime <=sumTimeNext)){
+			if((sumTime >= sumTimeBefore) && (sumTime <sumTimeNext)){
 				EventList.add(i,e);
 				return true;
 			}
@@ -33,5 +35,10 @@ public class EventQueue {
 		EventList.add(EventList.size(), e);
 		return true;
 
+	}
+	public Event next() {
+		Event output = EventList.get(0);
+		EventList.remove(0);
+		return output;
 	}
 }
