@@ -1,11 +1,12 @@
 package lab5.Events;
 
 import lab5.State.Customer;
+import lab5.State.StateStore;
 
 public class EventEnd extends Event{
 	
 	@Override
-	public void run(Customer customer){
+	public void run(StateStore state){
 		
 	}
 	
