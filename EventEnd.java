@@ -1,18 +1,23 @@
 package lab5.Events;
 
+import lab5.Sim;
 import lab5.State.Customer;
 import lab5.State.StateStore;
 
-public class EventEnd extends Event{
+
+public class EventGather extends Event{
+	
+	private StateStore state;
 	
 	@Override
-	public void run(StateStore state){
-		
+	public void run(StateStore state) {
+		this.state = state;
 	}
 	
 	@Override
 	public double getTime() {
-		return Integer.MAX_VALUE-1;
+		int id = this.getId();
+		return this.state.getCustomer(this.getId()).getArrival();
 	}
 
 }
