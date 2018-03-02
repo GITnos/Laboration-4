@@ -5,6 +5,8 @@ package lab5.State;
  * 
  */
 public class Customer {
+	static int counterID = 0;
+	static double arriveTime = 0;
 	private int id;
 	
 	// Arrival times
@@ -12,11 +14,14 @@ public class Customer {
 	private double checkout;
 	private double gather;
 	
-	public Customer(int id, double dArrival, double dCheckout, double dGather) {
-		this.id = id;
-		this.arrival = dArrival;
+	public Customer(double dArrival, double dCheckout, double dGather) {
+		this.id = counterID;
+		this.arrival = dArrival + arriveTime;
+		arriveTime =+ dArrival;
+		
 		this.gather = dGather;
 		this.checkout = dCheckout;
+		counterID++;
 		
 		
 	}
