@@ -4,7 +4,6 @@ public class CreateCustomer {
 // Used to create all customers.
 	
 	private int numCustomers = 0;
-	double currentTime = 0;
 	// Total number of customers.
 	
 	public Customer newCustomer(double dArrival, double dCheckout, double dGather, double dTravelTime) {
