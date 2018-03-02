@@ -10,6 +10,7 @@ public class StateStore extends State{
 	private int currentCustomers = 0;
 	private int missedCustomers = 0;
 	private ArrayList<Customer> customerList = new ArrayList();
+	private CreateCustomer customerCreator = new CreateCustomer();
 
 	public StateStore(double dLower, double dUpper, long lSeed, double dLambda) {
 		super(dLower, dUpper,lSeed, dLambda);
@@ -19,7 +20,7 @@ public class StateStore extends State{
 		super(dLower, dUpper, dLambda);
 	}
 	public Customer createCustomer() {
-		Customer customer = new Customer(this.getArrival(),this.getGather(),this.getGather());
+		Customer customer = customerCreator.newCustomer(getArrival(), getCheckout(), getGather());
 		this.customerList.add(customer);
 		return customer;
 	}
