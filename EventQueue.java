@@ -14,7 +14,6 @@ public class EventQueue {
 		//EventList.add(new EventEnd());
 
 	}
-
 	public static boolean add(Event e) {
 
 		for(int i = 1; i<EventList.size();i++) {
