@@ -5,18 +5,24 @@ import java.util.ArrayList;
 import lab5.Events.EventQueue;
 import lab5.State.Customer;
 import lab5.State.StateStore;
-
+/**
+ * this creates a simulation
+ * @author samuelgraden
+ *
+ */
 public class Sim {
 	EventQueue eventQ = new EventQueue();
 	StateStore state = new StateStore(0, 0, 0);
 
-	public static ArrayList<Customer> customerList;
-	
+	//ArrayList<Customer> customerList;
+	/**
+	 * all of the event is runned until the EventQueue is empty
+	 */
 	public void runSim() {
 		
 		for(int i = 0; i<eventQ.EventList.size();i++) {
 			
-			eventQ.next().run(state.createCustomer());
+			eventQ.next().run(state);
 		}
 	}
 	
