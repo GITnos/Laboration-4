@@ -3,14 +3,17 @@ import lab5.State.Customer;
 import lab5.State.State;
 import lab5.State.StateStore;
 /**
- * 
+ * This class is the general description of an event, all other events build up upon this one
  * @author samuelgraden
  *
  */
 public class Event {
 
 	private int id;
-
+	/**
+	 * All event have a run method which is runned by the simulation
+	 * @param state
+	 */
 	public void run(StateStore state) {
 		
 	}
