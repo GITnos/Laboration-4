@@ -3,7 +3,11 @@ package lab5.State;
 import java.util.ArrayList;
 
 import lab5.Sim;
-
+/**
+ * Represents the base of the state of the store, this is built up upon by StateStore
+ * @author samuelgraden
+ *
+ */
 public class State {
 	
 	private long seed;
