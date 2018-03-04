@@ -1,15 +1,18 @@
 package lab5.State;
 
 /**
- * 
+ * Represents a customer for the store,
  * @author samuelgraden
  * 
  */
 public class Customer {
 	private int id;
 
-	// Arrival times
+	/**
+	 * arrival is the time it takes from the opening of the store to the customer to arrive.
+	 */
 	private double arrival;
+	
 	private double checkout;
 	private double gather;
 
