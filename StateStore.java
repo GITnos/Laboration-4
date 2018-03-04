@@ -3,12 +3,17 @@ package lab5.State;
 import java.util.ArrayList;
 
 import lab5.Sim;
-
+/**
+ * 
+ * @author samuelgraden
+ *Represent the Store
+ */
 public class StateStore extends State{
 	
 	final int maxCustomers = 50;
 	private int currentCustomers = 0;
 	private int missedCustomers = 0;
+	
 	private ArrayList<Customer> customerList = new ArrayList();
 	private CreateCustomer customerCreator = new CreateCustomer();
 
@@ -19,6 +24,10 @@ public class StateStore extends State{
 	public StateStore(double dLower, double dUpper, double dLambda) {
 		super(dLower, dUpper, dLambda);
 	}
+	/**
+	 * createCustomer creates a customer with the CreateCustomer object,
+	 * @return Customer
+	 */
 	public Customer createCustomer() {
 		Customer customer = customerCreator.newCustomer(getArrival(), getCheckout(), getGather());
 		this.customerList.add(customer);
@@ -30,12 +39,21 @@ public class StateStore extends State{
 	public int getCurrentCustomers() {
 		return this.currentCustomers;
 	}
+	/**
+	 * adds one the the customer count
+	 */
 	public void addCustomer() {
 		this.currentCustomers++;
 	}
+	/**
+	 * removes one from the customer count
+	 */
 	public void removeCustomer() {
 		this.currentCustomers--;
 	}
+	/**
+	 * adds one to the missed customer counter
+	 */
 	public void addMissedCustomer() {
 		this.missedCustomers++;
 	}
