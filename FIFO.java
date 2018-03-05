@@ -1,4 +1,4 @@
-package lab5.state;
+package lab5.State;
 
 import java.util.ArrayList;
 import java.util.NoSuchElementException;
@@ -7,13 +7,13 @@ import java.lang.ClassCastException;
 
 public class FIFO {
 
-	private ArrayList<Object> fifoArray = new ArrayList<Object>();
+	private ArrayList<Customer> fifoArray = new ArrayList<Customer>();
 	private static int ms = 0;
 
 	public int size() {
 		return fifoArray.size();
 	}
-	public void add(Object item) {
+	public void add(Customer item) {
 		fifoArray.add(item);
 		if (ms < fifoArray.size()) {
 			ms += 1;
@@ -26,7 +26,7 @@ public class FIFO {
 			throw new NoSuchElementException();
 		}
 	}
-	public Object first() throws NoSuchElementException {
+	public Customer first() throws NoSuchElementException {
 		if (fifoArray.size() > 0) {
 			return fifoArray.get(0);
 		}else {
