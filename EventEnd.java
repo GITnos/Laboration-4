@@ -10,8 +10,8 @@
 		public class EventEnd extends Event{
 			
 			@Override
-			public void run(StateStore state){
-				
+			public void run(StateStore state,EventQueue EventQueue){
+				super.run(state, EventQueue);
 			}
 			/**
 			 * the time is max so it allways will be the last.
