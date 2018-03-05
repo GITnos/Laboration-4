@@ -12,7 +12,7 @@ import lab5.State.StateStore;
  */
 public class EventArrive extends Event{	
 	/**
-	 * the id is the same as the customer whom which this event belongs to
+	 * The id is parallel with the id of the customer which this event belongs to
 	 */
 	private int id;
 	StateStore state;
@@ -28,7 +28,7 @@ public class EventArrive extends Event{
 	}
 	
 	@Override
-	/** run will create the next arrive if there is room for another customer, is will also create its own gatether event
+	/** run will create the next arrive if there is room for another customer, is will also create its own gather event
 	 * @param state
 	 */
 	public void run(StateStore state) {
@@ -52,7 +52,7 @@ public class EventArrive extends Event{
 	
 	@Override
 	/**
-	 * returns the time of the corresponding customer arrive time
+	 * returns the time of the corresponding customer's arrive time
 	 */
 	public double getTime() {
 		int id = this.getId();
