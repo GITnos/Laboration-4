@@ -10,6 +10,7 @@ import lab5.Sim;
  */
 public class State {
 	
+	private double currentTime = 0;
 	private long seed;
 	private double upper;
 	private double lower;
@@ -42,6 +43,12 @@ public class State {
 	
 	public double getGather() {
 		return time.getGather();
+	}
+	public double getCurrentTime() {
+		return this.currentTime;
+	}
+	public void setCurrentTimte(double time) {
+		this.currentTime = time;
 	}
 	
 }
