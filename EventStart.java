@@ -9,12 +9,16 @@ import lab5.State.StateStore;
  *
  */
 public class EventStart extends Event{
+	public EventStart() {
+		System.out.println("EventStart: Created");
+	}
 	@Override
 	/**
 	 * runs EventStart
 	 * @param StateStore, EventQueue
 	 */
 	public void run(StateStore state,EventQueue EventQueue){
+		System.out.println("EventStart: Run");
 		super.run(state, EventQueue);
 		EventQueue.add(new EventArrive(state));
 	}
