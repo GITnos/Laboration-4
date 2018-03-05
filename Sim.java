@@ -20,10 +20,11 @@ public class Sim {
 	 */
 	public void runSim() {
 		
-		for(int i = 0; i<eventQ.EventList.size();i++) {
+		while(!(eventQ.isEnd())){
 			
-			eventQ.next().run(state);
+			eventQ.next().run(state,eventQ);
 		}
+		
 	}
 	
 }
