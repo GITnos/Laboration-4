@@ -19,9 +19,9 @@ public class Customer {
 	public Customer(double dArrival, double dCheckout, double dGather, int iId) {
 		this.id = iId;
 		this.arrival = dArrival;
-
 		this.gather = dGather;
 		this.checkout = dCheckout;
+		System.out.println("Customer created with id: " + this.id);
 	}
 
 	public int getId() {
