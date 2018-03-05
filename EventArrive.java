@@ -1,9 +1,6 @@
 package lab5.Events;
 
-import lab5.Sim;
-import lab5.State.CreateCustomer;
 import lab5.State.Customer;
-import lab5.State.State;
 import lab5.State.StateStore;
 /**
  * EventArrive is the event which is runned when ever a new customer arrives,
@@ -14,7 +11,7 @@ public class EventArrive extends Event{
 	/**
 	 * the id is the same as the customer whom which this event belongs to
 	 */
-	private int id;
+	//private int id;
 	StateStore state;
 	
 	/**
@@ -23,9 +20,13 @@ public class EventArrive extends Event{
 	 * @param state
 	 */
 	public EventArrive(StateStore state) {
-		state.setCurrentTimte(this.getTime());
+		//System.out.println("EventArrive: Creating...");
+		System.out.println("=========================================================");
 		Customer customer = state.createCustomer();
+		
+		this.state = state;
 		this.setId(customer.getId());
+		System.out.println("EventArrive: Created id: " + this.getId());
 	}
 	
 	@Override
@@ -33,25 +34,30 @@ public class EventArrive extends Event{
 	 * @param StateStore EventQueue
 	 */
 	public void run(StateStore state,EventQueue EventQueue) {
+		//System.out.println(this.state.getCustomer(this.id).getArrival());
+		state.setCurrentTimte(this.getTime());
+		System.out.println("EventArrive: runs, with id: "+  this.getId());
 		super.run(state, EventQueue);
-		if(state.getCurrentTime()>state.getCloseTime()) {
+		if(state.getCurrentTime()<state.getCloseTime()) {
 			
 			if(state.getMaxCustomers()>= state.getCurrentCustomers()) {
 
 				
 				EventQueue.add(new EventArrive(state));
-				EventGather EG = new EventGather();
-				EG.setId(this.id);
+				EventGather EG = new EventGather(state);
+				EG.setId(this.getId());
 				EventQueue.add(EG);
+				state.addCustomer();
 
-				//the store is full
+			//the store is full
 			}else {
+				System.out.println("Butiken är full");
 				EventQueue.add(new EventArrive(state));
 				state.addMissedCustomer();
 
 			}
 		}else {
-			
+			System.out.println("Affären stänger;");
 			EventClose EClose = new EventClose(state, EventQueue);
 			EventQueue.add(EClose);
 		}
@@ -62,7 +68,6 @@ public class EventArrive extends Event{
 	 * @return the time of the corresponding customer arrive time
 	 */
 	public double getTime() {
-		int id = this.getId();
-		return this.state.getCustomer(this.id).getArrival();
+		return this.state.getCustomer(this.getId()).getArrival();
 	}
 }
