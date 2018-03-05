@@ -10,10 +10,10 @@ import lab5.State.StateStore;
 public class EventClose extends Event{
 	
 	@Override
-	public void run(StateStore state) {
-		
+	public void run(StateStore state,EventQueue EventQueue) {
+		super.run(state, EventQueue);
 	}
-	//denna tiden är inte rätt den måste räknas ut utifrån current time och ska vara stängings tiden
+	
 	@Override
 	public double getTime() {
 		return Integer.MAX_VALUE-1;
