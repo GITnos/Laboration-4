@@ -7,7 +7,7 @@ package lab5.State;
  */
 public class Customer {
 	private int id;
-
+	private double queueTime = 0;
 	/**
 	 * arrival is the time it takes from the opening of the store to the customer to arrive.
 	 */
@@ -42,5 +42,11 @@ public class Customer {
 
 	public double getAllTime() {
 		return this.arrival + this.gather + this.checkout;
+	}
+	public double getQueueTime() {
+		return this.queueTime;
+	}
+	public void setQueueTime(double time) {
+		this.queueTime = time;
 	}
 }
