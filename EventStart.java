@@ -11,15 +11,18 @@ import lab5.State.StateStore;
 public class EventStart extends Event{
 	@Override
 	/**
-	 * EventStart is runned
+	 * runs EventStart
+	 * @param StateStore, EventQueue
 	 */
-	public void run(StateStore state){
+	public void run(StateStore state,EventQueue EventQueue){
+		super.run(state, EventQueue);
 		EventQueue.add(new EventArrive(state));
 	}
 	
 	@Override
 	/**
-	 * getTime return the time 0 to represent the start
+	 * getTime 
+	 * @return the time 0 to represent the start
 	 */
 	public double getTime() {
 		return 0;
