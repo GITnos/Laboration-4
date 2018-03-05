@@ -30,11 +30,12 @@ public class EventArrive extends Event{
 	
 	@Override
 	/** run will create the next arrive if there is room for another customer, is will also create its own gatether event
-	 * @param state
+	 * @param StateStore EventQueue
 	 */
 	public void run(StateStore state,EventQueue EventQueue) {
 		super.run(state, EventQueue);
-		if(true) {
+		if(state.getCurrentTime()>state.getCloseTime()) {
+			
 			if(state.getMaxCustomers()>= state.getCurrentCustomers()) {
 
 				
@@ -49,12 +50,16 @@ public class EventArrive extends Event{
 				state.addMissedCustomer();
 
 			}
+		}else {
+			
+			EventClose EClose = new EventClose(state, EventQueue);
+			EventQueue.add(EClose);
 		}
 	}
 	
 	@Override
 	/**
-	 * returns the time of the corresponding customer arrive time
+	 * @return the time of the corresponding customer arrive time
 	 */
 	public double getTime() {
 		int id = this.getId();
