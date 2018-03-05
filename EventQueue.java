@@ -10,9 +10,9 @@ import lab5.Sim;
  */
 public class EventQueue {
 
-	public static ArrayList<Event> EventList = new ArrayList();
+	private ArrayList<Event> EventList = new ArrayList();
 
-	public void EventQueue() {
+	public EventQueue() {
 		EventList.add(0,new EventStart());
 
 		//EventList.add(new EventEnd());
@@ -24,24 +24,24 @@ public class EventQueue {
 	 * @param e the Event which will be added
 	 * @return true when is is done
 	 */
-	public static boolean add(Event e) {
+	public boolean add(Event e) {
 
-		for(int i = 1; i<EventList.size();i++) {
-			Event event = EventList.get(i);
-			Event before = EventList.get(i-1);
-			Event next = EventList.get(i+1);
+		for(int i = 1; i<this.EventList.size();i++) {
+			Event event = this.EventList.get(i);
+			Event before = this.EventList.get(i-1);
+			Event next = this.EventList.get(i+1);
 			
 			double sumTime = event.getTime();
 			double sumTimeBefore = before.getTime();
 			double sumTimeNext = next.getTime();
 			
 			if((sumTime >= sumTimeBefore) && (sumTime <sumTimeNext)){
-				EventList.add(i,e);
+				this.EventList.add(i,e);
 				return true;
 			}
 		}
 
-		EventList.add(EventList.size(), e);
+		this.EventList.add(this.EventList.size(), e);
 		return true;
 
 	}
@@ -50,8 +50,20 @@ public class EventQueue {
 	 * @return the next event in line and then removes it
 	 */
 	public Event next() {
-		Event output = EventList.get(0);
-		EventList.remove(0);
+		Event output = this.EventList.get(0);
+		this.EventList.remove(0);
 		return output;
+	}
+	/**
+	 * checks if the next Event is the end
+	 * @return
+	 */
+	public boolean isEnd() {
+		if(this.EventList.get(0) instanceof EventEnd ) {
+			return true;
+		}
+		else {
+			return false;
+		}
 	}
 }
