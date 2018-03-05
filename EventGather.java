@@ -12,13 +12,17 @@ import lab5.State.StateStore;
 public class EventGather extends Event{
 	
 	private StateStore state;
-	//Lägg till att det skapas ett checkout event här med samma id.
-	/**
-	*run shall create the checkout event
-	*/
+	
 	@Override
-	public void run(StateStore state) {
+	public void run(StateStore state,EventQueue EventQueue) {
+		super.run(state, EventQueue);
 		this.state = state;
+		if(state.getNumOfFreeCounter() >0) {
+			EventCheckout EC = new EventCheckout(state,EventQueue);
+			EC.setId(this.getId());
+		}else{
+			state.add(state.getCustomer(this.getId()));
+		}
 	}
 
 	@Override
