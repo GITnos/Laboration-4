@@ -8,7 +8,11 @@ import lab5.State.StateStore;
  *
  */
 public class EventClose extends Event{
+	private double time;
 	
+	public EventClose(StateStore state, EventQueue EventQueue) {
+		this.time = state.getCurrentTime();
+	}
 	@Override
 	public void run(StateStore state,EventQueue EventQueue) {
 		super.run(state, EventQueue);
@@ -16,6 +20,6 @@ public class EventClose extends Event{
 	
 	@Override
 	public double getTime() {
-		return Integer.MAX_VALUE-1;
+		return this.time;
 	}
 }
