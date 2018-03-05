@@ -4,7 +4,11 @@ import java.util.ArrayList;
 import java.util.NoSuchElementException;
 import java.lang.ClassCastException;
 
-
+/**
+ * Represents the queue for the counters
+ * @author Tom Brander
+ *
+ */
 public class FIFO {
 
 	private ArrayList<Customer> fifoArray = new ArrayList<Customer>();
@@ -27,7 +31,8 @@ public class FIFO {
 		}
 	}
 	public Customer first() throws NoSuchElementException {
-		if (fifoArray.size() > 0) {
+		if (fifoArray.size() >0) {
+			System.out.println("First in FIFO is:" + fifoArray.get(0));
 			return fifoArray.get(0);
 		}else {
 			throw new NoSuchElementException();
