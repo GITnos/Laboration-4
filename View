@@ -1,10 +1,48 @@
 package gui;
 
-public class View {
+import java.util.Observable;
+import java.util.Observer;
+import lab5.State.StateStore;
 
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
+public class View implements Observer {
+	
+  public static void main(String[] args) {
+  	printStart();
+  }
+	
+	private StateStore state; 
+	
+	public View(StateStore s) {
+		state = s;
 	}
 
+	public void update(Observable arg0, Object arg1){
+
+	}
+	
+	private static void printStart() {
+		/**c: Antal kassor 
+		 * ledC: Lediga kassor
+		 *  ledCT: LedigTid
+		 *  I: Kunder i butiken
+		 *  -: Missade kunder
+		 *  +: Hanterade kunder
+		 *  T: Tid sen start
+		 *  E: Event namn
+		 *  kt: Kötid
+		*/
+		System.out.println("c     ledC     ledCT     I     -     +     T     E     kt");
+		//System.out.println("1337    2.30     1.30    "+roundDec(1.2396534563456457,2)+"     i     i     i     i");
+	}
+	private void printEnd() {
+		
+	}
+	
+	private static double roundDec(double n, int d) {
+		// Rounds the number n to d number of decimals.
+		double r;
+		r = Math.round(n*Math.pow(10, d))*Math.pow(10, -d);
+		return r; 
+	}
+	
 }
