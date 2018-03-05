@@ -1,4 +1,6 @@
 package lab5.Events;
+import java.util.Observable;
+
 import lab5.State.Customer;
 import lab5.State.State;
 import lab5.State.StateStore;
@@ -7,15 +9,18 @@ import lab5.State.StateStore;
  * @author samuelgraden
  *
  */
-public class Event {
+public class Event extends Observable{
 
 	private int id;
 	/**
 	 * All event have a run method which is runned by the simulation
 	 * @param state
 	 */
-	public void run(StateStore state) {
-		
+	public void run(StateStore state, EventQueue EventQueue) {
+		state.setFreeCounterTime((state.getCurrentTime()-state.getLastCheckedTime())*state.getNumOfFreeCounter());
+		state.setLastCheckedTime(state.getCurrentTime());
+		setChanged();
+		notifyObservers();
 	}
 
 	public int getId() {
