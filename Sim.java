@@ -1,6 +1,7 @@
 package lab5;
 
 import java.util.ArrayList;
+import java.util.Observable;
 
 import lab5.Events.EventQueue;
 import lab5.State.Customer;
@@ -10,7 +11,7 @@ import lab5.State.StateStore;
  * @author samuelgraden
  *
  */
-public class Sim {
+public class Sim extends Observable{
 		private EventQueue eventQ;
 		private StateStore state;
 
@@ -25,7 +26,7 @@ public class Sim {
 	public Sim(int counters, long seed) {
 
 		this.eventQ = new EventQueue();
-		this.state = new StateStore(dLower,dUpper,pLower,pUpper,seed,dLambda);
+		this.state = new StateStore(dLower,dUpper,pLower,pUpper,this.seed,dLambda);
 		state.setNumOfCounter(counters);
 		state.setMaxCustomers(maxCust);
 	}
@@ -51,6 +52,8 @@ public class Sim {
 
 			//System.out.println("Jag kör");
 			eventQ.next().run(state,eventQ);
+			setChanged();
+			notifyObservers();
 		}
 
 	}
