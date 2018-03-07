@@ -107,7 +107,10 @@ public class StateStore extends State{
 		//System.out.println("StateStore id:" + id);
 		return customerList.get(id);
 	}
-	
+	/**
+	 * 
+	 * @return sum of queue times for all customers
+	 */
 	public double getqTime() {
 		int n=0;
 		for (int i = 0; i < customerList.size(); i++) {
@@ -220,6 +223,36 @@ public class StateStore extends State{
 	 */
 	public int listSize() {
 		return this.customerList.size();
+	}
+	
+	/**
+	 * 
+	 * @return amount of checked out customers
+	 */
+	public int getCheckedOutCustomers() {
+		return listSize() - getCurrentCustomers() - getMissedCustomer();
+	}
+	/**
+	 * 
+	 * @return the name of latest run event
+	 */
+	public String getEventName() {
+		String s = "";
+		
+	// Skriv in dina grejjer här, Samuel of house Tarly
+		
+		return s;
+	}
+	/**
+	 * 
+	 * @return the id of the latest run event
+	 */
+	public int getEventid() {
+		int n = 0;
+		
+
+		
+		return n;
 	}
 
 }
