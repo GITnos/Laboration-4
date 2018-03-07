@@ -35,7 +35,6 @@ public class EventGather extends Event {
 		if (state.getNumOfFreeCounter() > 0) {
 			EventCheckout EC = new EventCheckout(state, EventQueue);
 			EC.setId(this.getId());
-			EC.setTime(state.getCustomer(this.getId()).getArrival() + state.getCustomer(this.getId()).getGather());;
 			EventQueue.add(EC);
 			state.decreseNumOfFreeCounter();
 			
