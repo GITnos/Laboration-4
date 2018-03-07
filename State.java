@@ -14,23 +14,30 @@ public class State {
 	private long seed;
 	private double upper;
 	private double lower;
-	private double lambda;
+	private double lambda = 1.0;
+	private double pLower;
+	private double pUpper;
 	private Time time;
 	public boolean STOP = false;
 	
-	public State(double dLower, double dUpper, long lSeed, double dLambda) {
+	public State(double dLower, double dUpper,double pLower, double pUpper, long lSeed, double dLambda) {
 		seed = lSeed;
-		upper = dUpper;	
-		lower = dLower;
-		lambda = dLambda;
-		time = new Time(lower, upper, seed, lambda);
+		this.upper = dUpper;	
+		this.lower = dLower;
+		this.lambda = dLambda;
+		this.pLower = pLower;
+		this.pUpper = pUpper;
+		time = new Time(this.lower, this.upper,this.pLower,this.pUpper, this.seed, this.lambda);
 	}
 	
-	public State(double dLower, double dUpper, double dLambda) {
-		upper = dUpper;	
-		lower = dLower;
-		lambda = dLambda;
-		time = new Time(lower, upper, lambda);
+	public State(double dLower, double dUpper,double pLower,double pUpper, double dLambda) {
+		this.upper = dUpper;	
+		this.lower = dLower;
+		this.lambda = dLambda;
+		this.pLower = pLower;
+		this.pUpper = pUpper;
+		
+		time = new Time(this.lower, this.upper,this.pLower,this.pUpper, this.lambda);
 	}
 	
 	public double getArrival() {
