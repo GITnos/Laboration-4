@@ -9,7 +9,10 @@ import lab5.Events.EventQueue;
 
 public class Optimize {
     private int maxCustomers = 50;
-
+    
+    /**
+    * optimizeOneSim går igenom testar en simulation flera gåner med olika antar kassor och returnerar minsta antal kassor med så få missade kuner som möjligt.
+    */
     private int optimizeOneSim(){
         int minMissedCustomers = -1;
         int minCounters = 1;
@@ -30,6 +33,10 @@ public class Optimize {
         return minCounters;
 
     }
+    
+    /**
+    * optimizeManySim går igeom många olika simulationer mha optimizeOneSim och returnerar de största minsta antal kassor 
+    */
 
     public int optimizeManySim(){
         int count = 0;
