@@ -24,7 +24,7 @@ public class View implements Observer {
 	}
 
 	public void update(Observable arg0, Object arg1){
-		print(eventQ.getEvent().getId(), eventQ.getEvent().getName(), state.getNumOfFreeCounter(), state.getCurrentCustomers(), state.getCheckedOutCustomers(), state.getMissedCustomer(), state.getFreeCounterTime(), state.getqTime(), state.getCurrentTime());
+		print(eventQ.getEvent().getId(), eventQ.getEvent().getName(), state.getNumOfFreeCounter(), state.getCurrentCustomers(), state.getCheckedOutCustomers(), state.getMissedCustomer(), state.getFreeCounterTime(), state.getqTime(), eventQ.getEvent().getTime());
 	}
 	
 	private static void printStart() {
@@ -51,6 +51,7 @@ public class View implements Observer {
 			eventName = " "+eventName;
 		}
 		
+		System.out.println();
 		System.out.print(customerid);
 		System.out.print("   ");
 		System.out.print(eventName);
@@ -68,7 +69,7 @@ public class View implements Observer {
 		System.out.print(roundTime(queueTime));
 		System.out.print("     ");
 		System.out.print(roundTime(currentTime));
-		printEnd();
+		//System.print
 	}
 	
 	private static void printEnd() {
