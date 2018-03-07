@@ -20,7 +20,6 @@ public class EventQueue {
 		EventList.add(0, new EventStart());
 
 		// EventList.add(new EventEnd());
-
 	}
 
 	/**
@@ -30,18 +29,14 @@ public class EventQueue {
 	 * @return True when is is done
 	 */
 	public boolean add(Event e) {
-		//System.out.println("EventQueue adds: " + e.getClass().toString());
 
 		if (EventList.size() == 0) {
 			EventList.add(e);
-			//System.out.println(e.getClass().toString() + ": added at index: " + 0);
-			//System.out.println(EventList.toString() + "  Size: " + EventList.size());
+
 			return true;
 		}
 		if (e.getTime() < EventList.get(0).getTime()) {
 			EventList.add(0, e);
-			//System.out.println(e.getClass().toString() + ": added at index: " + EventList);
-			//System.out.println(EventList.toString() + "  Size: " + EventList.size());
 			return true;
 		}
 
@@ -56,16 +51,13 @@ public class EventQueue {
 
 			if ((sumTime >= sumTimeBefore) && (sumTime < sumTimeNext)) {
 				this.EventList.add(i, e);
-				//System.out.println(e.getClass().toString() + ": added at index: " + i);
-				//System.out.println(EventList.toString() + "  Size: " + EventList.size());
+				
 				return true;
 			}
 		}
 
 		this.EventList.add(this.EventList.size(), e);
 
-		//System.out.println(e.getClass().toString() + ": added at index: " + this.EventList.size());
-		//System.out.println(EventList.toString() + "  Size: " + EventList.size());
 		return true;
 
 	}
