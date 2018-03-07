@@ -2,18 +2,16 @@ package gui;
 
 import java.util.Observable;
 import java.util.Observer;
-import lab5.State.StateStore;
+//import lab5.State.StateStore;
 
 public class View implements Observer {
 	
   public static void main(String[] args) {
-  	printStart();
+  	print(3, "EventArrive", 3, 10, 13, 2, 13.23456, 0.12, 25.384530);
   }
-	
-	private StateStore state; 
-	
-	public View(StateStore s) {
-		state = s;
+		
+	public View() {
+		
 	}
 
 	public void update(Observable arg0, Object arg1){
@@ -22,27 +20,60 @@ public class View implements Observer {
 	
 	private static void printStart() {
 		/**c: Antal kassor 
-		 * ledC: Lediga kassor
-		 *  ledCT: LedigTid
+		 * ledc: Lediga kassor
+		 *  ledct: LedigTid
 		 *  I: Kunder i butiken
-		 *  -: Missade kunder
-		 *  +: Hanterade kunder
-		 *  T: Tid sen start
-		 *  E: Event namn
+		 *  m: Missade kunder
+		 *  h: Hanterade kunder
+		 *  I: customers i butiken
+		 *  e: Event namn
 		 *  kt: Kötid
+		 *  T: currentTime
+		 *  id: Customer id
 		*/
-		System.out.println("c     ledC     ledCT     I     -     +     T     E     kt");
+		System.out.println("id        e        ledc        I        h        m        ledct        kt        T");
 		//System.out.println("1337    2.30     1.30    "+roundDec(1.2396534563456457,2)+"     i     i     i     i");
 	}
-	private void printEnd() {
+	
+	public static void print(int customerid, String eventName, int numFreeCounters, int customers, int checkedOutCustomers, int missedCustomers, double counterFreeTime, double queueTime, double currentTime) {
+		
+		while (eventName.length() < 13) {
+			eventName += " ";
+			eventName = " "+eventName;
+		}
+		
+		printStart();
+		System.out.print(customerid);
+		System.out.print("   ");
+		System.out.print(eventName);
+		System.out.print("   ");
+		System.out.print(numFreeCounters);
+		System.out.print("         ");
+		System.out.print(customers);
+		System.out.print("       ");
+		System.out.print(checkedOutCustomers);
+		System.out.print("       ");
+		System.out.print(missedCustomers);
+		System.out.print("         ");
+		System.out.print(roundTime(counterFreeTime));
+		System.out.print("         ");
+		System.out.print(roundTime(queueTime));
+		System.out.print("     ");
+		System.out.print(roundTime(currentTime));
+		printEnd();
+	}
+	
+	private static void printEnd() {
 		
 	}
 	
-	private static double roundDec(double n, int d) {
+	private static double roundTime(double n) {
 		// Rounds the number n to d number of decimals.
-		double r;
-		r = Math.round(n*Math.pow(10, d))*Math.pow(10, -d);
-		return r; 
+  		double r;
+  		r = Math.round(n*Math.pow(10, 1))/Math.pow(10, 1);
+  		return r;
 	}
+	
+	
 	
 }
