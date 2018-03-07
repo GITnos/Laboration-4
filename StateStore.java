@@ -107,6 +107,15 @@ public class StateStore extends State{
 		//System.out.println("StateStore id:" + id);
 		return customerList.get(id);
 	}
+	
+	public double getqTime() {
+		int n=0;
+		for (int i = 0; i < customerList.size(); i++) {
+			n+=customerList.get(i).getQueueTime();
+		}
+		return n;
+	}
+	
 	/**
 	 * 
 	 * @return the number of free counters
