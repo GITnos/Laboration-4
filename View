@@ -20,6 +20,7 @@ public class View implements Observer {
 		this.state = sim.getState();
 		this.eventQ = sim.getEventQueue();
 		sim.addObserver(this);
+		printStart();
 	}
 
 	public void update(Observable arg0, Object arg1){
@@ -50,7 +51,6 @@ public class View implements Observer {
 			eventName = " "+eventName;
 		}
 		
-		printStart();
 		System.out.print(customerid);
 		System.out.print("   ");
 		System.out.print(eventName);
