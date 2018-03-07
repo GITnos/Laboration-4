@@ -41,14 +41,14 @@ public class EventArrive extends Event{
 		if(state.getCurrentTime()<state.getCloseTime()) {
 			
 			if(state.getMaxCustomers()>= state.getCurrentCustomers()) {
-				state.addCustomer();
+
 				//System.out.println("HALLLLLLÅÅÅÅ!!!!!");
 				EventQueue.add(new EventArrive(state));
 				EventGather EG = new EventGather(state);
 				EG.setId(this.getId());
 				//System.out.println("EventGather sets id: " + this.getId());
 				EventQueue.add(EG);
-				//state.addCustomer();
+				state.addCustomer();
 
 			//the store is full
 			}else {
@@ -60,9 +60,8 @@ public class EventArrive extends Event{
 		
 		}else {
 			//System.out.println("Affären stänger;");
-			state.addMissedCustomer();
-			//EventClose EClose = new EventClose(state, EventQueue);
-			//EventQueue.add(EClose);
+			EventClose EClose = new EventClose(state, EventQueue);
+			EventQueue.add(EClose);
 		}
 	}
 	@Override
