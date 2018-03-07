@@ -16,7 +16,7 @@ public class Optimize {
         int minCounters = 1;
         EventQueue eventQ = new EventQueue();
         StateStore state = new StateStore(dLower,dUpper,pLower,pUpper,dLambda, counters);
-        int maxCustomers = state.getMaxCustomers;
+        int maxCustomers = state.getMaxCustomers();
         for(int i = 1; i <= maxCustomers; i++){
             state.setNumOfCounter(i);
 
