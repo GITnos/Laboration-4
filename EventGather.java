@@ -3,7 +3,7 @@ package lab5.Events;
 import lab5.State.StateStore;
 
 /**
- * EventGather is the time is takes to gather weares
+ * EventGather is the time is takes to gather wares
  * 
  * @author Samuel Gradén
  *
@@ -13,22 +13,22 @@ public class EventGather extends Event {
 	private StateStore state;
 
 	/**
-	 * the constructor of EventGather stores the state
+	 * The constructor of EventGather
 	 * 
 	 * @author Samuel Gradén
 	 * @param state
 	 */
 	public EventGather(StateStore state) {
-		System.out.println("EventGather: Creating... \nEventGather: Created id:" + this.getId());
+		//System.out.println("=========================================================");
 		this.state = state;
 	}
-
-	@Override
 	/**
 	 * @author Samuel Gradén
 	 */
+	@Override
 	public void run(StateStore state, EventQueue EventQueue) {
-		System.out.println("EventGather runs, id:" + this.getId());
+		state.setCurrentTimte(this.getTime());
+		//System.out.println("EventGather runs, id:" + this.getId());
 		super.run(state, EventQueue);
 		this.state = state;
 
@@ -36,12 +36,18 @@ public class EventGather extends Event {
 			EventCheckout EC = new EventCheckout(state, EventQueue);
 			EC.setId(this.getId());
 			EventQueue.add(EC);
+			state.decreseNumOfFreeCounter();
 			
 
 		} else {
 			
 		}
 		state.add(state.getCustomer(this.getId()));
+	}
+	
+	@Override
+	public String getName() {
+		return "Gather";
 	}
 
 	@Override
