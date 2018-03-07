@@ -22,6 +22,8 @@ public class EventStart extends Event{
 		//System.out.println("EventStart: Run");
 		super.run(state, EventQueue);
 		EventQueue.add(new EventArrive(state));
+		EventClose EC = new EventClose(state,EventQueue);
+		EventQueue.add(EC);
 	}
 	@Override
 	public String getName() {
