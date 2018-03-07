@@ -1,23 +1,29 @@
-package gui;
+package lab5.GUI;
 
 import java.util.Observable;
 import java.util.Observer;
+
+import lab5.Sim;
+import lab5.Events.EventQueue;
 import lab5.State.StateStore;
 
 public class View implements Observer {
 	
 	private StateStore state;
+	private EventQueue eventQ;
 	
-  public static void main(String[] args) {
-  	print(3, "EventArrive", 3, 10, 13, 2, 13.23456, 0.12, 25.384530);
-  }
+ // public static void main(String[] args) {
+  //	print(3, "EventArrive", 3, 10, 13, 2, 13.23456, 0.12, 25.384530);
+  //}
 		
-	public View(StateStore s) {
-		state = s;
+	public View(Sim sim) {
+		this.state = sim.getState();
+		this.eventQ = sim.getEventQueue();
+		sim.addObserver(this);
 	}
 
 	public void update(Observable arg0, Object arg1){
-		print(state.getEventid(), state.getEventName(), state.getNumOfFreeCounter(), state.getCurrentCustomers(), state.getCheckedOutCustomers(), state.getMissedCustomer(), state.getFreeCounterTime(), state.getqTime(), state.getCurrentTime());
+		print(eventQ.getEvent().getId(), eventQ.getEvent().getName(), state.getNumOfFreeCounter(), state.getCurrentCustomers(), state.getCheckedOutCustomers(), state.getMissedCustomer(), state.getFreeCounterTime(), state.getqTime(), state.getCurrentTime());
 	}
 	
 	private static void printStart() {
