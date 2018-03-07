@@ -32,6 +32,9 @@ public class Customer {
 		return arrival;
 	}
 
+	public double getArrGat() {
+		return this.getArrival() + this.getGather();
+	}
 	public double getGather() {
 		return gather;
 	}
