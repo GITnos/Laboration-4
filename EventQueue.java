@@ -6,7 +6,7 @@ import java.util.ArrayList;
 /**
  * EventQueue holds every event and keeps them in chronological order.
  * 
- * @author Samuel Gradén
+ * @author Samuel Gradén, Tom Brander
  *
  */
 public class EventQueue {
@@ -25,23 +25,23 @@ public class EventQueue {
 
 	/**
 	 * The event will be added in and sorted after its time.
-	 * @author Samuel Gradén
+	 * @author Samuel Gradén, Tom Brander
 	 * @param 
 	 * @return True when is is done
 	 */
 	public boolean add(Event e) {
-		System.out.println("EventQueue adds: " + e.getClass().toString());
+		//System.out.println("EventQueue adds: " + e.getClass().toString());
 
 		if (EventList.size() == 0) {
 			EventList.add(e);
 			//System.out.println(e.getClass().toString() + ": added at index: " + 0);
-			System.out.println(EventList.toString() + "  Size: " + EventList.size());
+			//System.out.println(EventList.toString() + "  Size: " + EventList.size());
 			return true;
 		}
 		if (e.getTime() < EventList.get(0).getTime()) {
 			EventList.add(0, e);
 			//System.out.println(e.getClass().toString() + ": added at index: " + EventList);
-			System.out.println(EventList.toString() + "  Size: " + EventList.size());
+			//System.out.println(EventList.toString() + "  Size: " + EventList.size());
 			return true;
 		}
 
@@ -57,7 +57,7 @@ public class EventQueue {
 			if ((sumTime >= sumTimeBefore) && (sumTime < sumTimeNext)) {
 				this.EventList.add(i, e);
 				//System.out.println(e.getClass().toString() + ": added at index: " + i);
-				System.out.println(EventList.toString() + "  Size: " + EventList.size());
+				//System.out.println(EventList.toString() + "  Size: " + EventList.size());
 				return true;
 			}
 		}
@@ -65,7 +65,7 @@ public class EventQueue {
 		this.EventList.add(this.EventList.size(), e);
 
 		//System.out.println(e.getClass().toString() + ": added at index: " + this.EventList.size());
-		System.out.println(EventList.toString() + "  Size: " + EventList.size());
+		//System.out.println(EventList.toString() + "  Size: " + EventList.size());
 		return true;
 
 	}
@@ -79,6 +79,9 @@ public class EventQueue {
 		Event output = this.EventList.get(0);
 		this.EventList.remove(0);
 		return output;
+	}
+	public Event getEvent() {
+		return this.EventList.get(0);
 	}
 
 	/**
