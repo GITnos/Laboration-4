@@ -2,7 +2,7 @@ package lab5.State;
 
 /**
  * Represents a customer for the store,
- * @author samuelgraden
+ * @author Samuel Graden
  * 
  */
 public class Customer {
@@ -21,7 +21,7 @@ public class Customer {
 		this.arrival = dArrival;
 		this.gather = dGather;
 		this.checkout = dCheckout;
-		System.out.println("Customer created with id: " + this.id);
+		//System.out.println("Customer created with id: " + this.id);
 	}
 
 	public int getId() {
@@ -39,7 +39,9 @@ public class Customer {
 	public double getCheckout() {
 		return checkout;
 	}
-
+	public double getArrGatQue() {
+		return this.arrival + this.gather + this.queueTime;
+	}
 	public double getAllTime() {
 		return this.arrival + this.gather + this.checkout;
 	}
