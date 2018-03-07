@@ -9,11 +9,10 @@ import lab5.State.StateStore;
 /**
  * this creates a simulation
  * @author samuelgraden
- *
  */
 public class Sim extends Observable{
-		private EventQueue eventQ;
-		private StateStore state;
+	private EventQueue eventQ;
+	private StateStore state;
 
 	private final double dLower = 2.0;
 	private final double dUpper = 3.0;
@@ -24,26 +23,31 @@ public class Sim extends Observable{
 	private final int maxCust = 5;
 
 	public Sim(int counters, long seed) {
-
 		this.eventQ = new EventQueue();
-		this.state = new StateStore(dLower,dUpper,pLower,pUpper,this.seed,dLambda);
+		this.state = new StateStore(dLower,dUpper,pLower,pUpper,this.seed,dLambda,counters);
 		state.setNumOfCounter(counters);
 		state.setMaxCustomers(maxCust);
 	}
 	public Sim(int counters) {
 
 		this.eventQ = new EventQueue();
-		this.state = new StateStore(dLower,dUpper,pLower,pUpper,dLambda);
+		this.state = new StateStore(dLower,dUpper,pLower,pUpper,dLambda,counters);
 		state.setNumOfCounter(counters);
+		//System.out.println(2);
 		state.setMaxCustomers(maxCust);
 
 	}
 
-	public StateStore getState(){return state;}
+	public StateStore getState(){
+		return this.state;
+	}
 
-	//ArrayList<Customer> customerList;
+	public EventQueue getEventQueue() {
+		return this.eventQ;
+	}
+
 	/**
-	 * all of the event is runned until the EventQueue is empty
+	 * all of the event is run until the EventQueue is empty
 	 */
 	public void runSim() {
 
@@ -54,7 +58,10 @@ public class Sim extends Observable{
 			eventQ.next().run(state,eventQ);
 			setChanged();
 			notifyObservers();
+			//System.out.println("Current Time: " + state.getCurrentTime());
+			//System.out.println("Kassorna var lediga: "+ state.getFreeCounterTime());
 		}
+		//
 
 	}
 
