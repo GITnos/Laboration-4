@@ -29,15 +29,17 @@ public class StateStore extends State{
 
 	
 	
-	public StateStore(double dLower, double dUpper,double pLower, double pUpper, long seed, double dLambda) {
+	public StateStore(double dLower, double dUpper,double pLower, double pUpper, long seed, double dLambda,int counters) {
 		super(dLower, dUpper,pLower,pUpper,seed, dLambda);
 		this.customerList = new ArrayList<Customer>();
+		this.numOfCounter = counters;
 		this.numOfFreeCounter = this.numOfCounter;
 	}
 
-	public StateStore(double dLower, double dUpper,double pLower, double pUpper,  double dLambda) {
+	public StateStore(double dLower, double dUpper,double pLower, double pUpper,  double dLambda,int counters) {
 		super(dLower, dUpper,pLower,pUpper, dLambda);
 		this.customerList = new ArrayList<Customer>();
+		this.numOfCounter = counters;
 		this.numOfFreeCounter = this.numOfCounter;
 	}
 	
