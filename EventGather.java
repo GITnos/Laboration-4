@@ -27,7 +27,7 @@ public class EventGather extends Event {
 	 */
 	@Override
 	public void run(StateStore state, EventQueue EventQueue) {
-		state.setCurrentTimte(this.getTime());
+		state.setCurrentTimte(getTime());
 		//System.out.println("EventGather runs, id:" + this.getId());
 		super.run(state, EventQueue);
 		this.state = state;
@@ -35,14 +35,15 @@ public class EventGather extends Event {
 		if (state.getNumOfFreeCounter() > 0) {
 			EventCheckout EC = new EventCheckout(state, EventQueue);
 			EC.setId(this.getId());
+			EC.setTime(state.getCustomer(this.getId()).getArrival() + state.getCustomer(this.getId()).getGather());;
 			EventQueue.add(EC);
 			state.decreseNumOfFreeCounter();
 			
 
 		} else {
-			
+			state.add(state.getCustomer(this.getId()));
 		}
-		state.add(state.getCustomer(this.getId()));
+		
 	}
 	
 	@Override
@@ -52,7 +53,7 @@ public class EventGather extends Event {
 
 	@Override
 	public double getTime() {
-		return this.state.getCustomer(this.getId()).getArrival();
+		return this.state.getCustomer(this.getId()).getArrival() + this.state.getCustomer(this.getId()).getGather();
 	}
 
 }
