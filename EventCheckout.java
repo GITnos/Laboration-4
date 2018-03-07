@@ -12,8 +12,9 @@ public class EventCheckout extends Event{
 
 	public EventCheckout(StateStore state,EventQueue EventQueue) {
 		//System.out.println("EventCheckout: Created id: " + this.getId());
-		this.setTime(state.getCurrentTime());
+		state.getCustomer(this.getId()).setQueueTime(state.getCurrentTime() - state.getCustomer(this.getId()).getArrGat());
 		this.state = state;
+		
 	}
 	/**
 	 * When running EventCheckout the Queue time for the customer will be calculated. 
@@ -23,7 +24,6 @@ public class EventCheckout extends Event{
 	 */
 	@Override
 	public void run(StateStore state,EventQueue EventQueue) {
-
 		//state.setCurrentTimte(this.getTime());
 		//System.out.println("EventCheckout runs id: " + this.getId());
 		//	System.out.println("=========================================================");
@@ -49,7 +49,7 @@ public class EventCheckout extends Event{
 		//System.out.println("CurrentTime:" + state.getCurrentTime());
 		
 		state.removeCustomer();
-
+		state.setCurrentTimte(this.getTime());
 	}
 	public void setTime(double time ) {
 		this.time = time;
@@ -61,7 +61,7 @@ public class EventCheckout extends Event{
 
 	@Override
 	public double getTime() {
-		return state.getCustomer(this.getId()).getArrGatQue();
+		return state.getCustomer(this.getId()).getAllTime();
 	}
 
 }
