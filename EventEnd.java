@@ -25,6 +25,6 @@ public class EventEnd extends Event{
 	@Override
 	public double getTime() {
 		return Integer.MAX_VALUE;
-	}
+	} 
 
 }
