@@ -1,79 +1,59 @@
 package lab5.Events;
 
-import lab5.State.Customer;
 import lab5.State.StateStore;
 /**
- * EventArrive is the event which is runned when ever a new customer arrives,
+ * EventCheckout 
  * @author Samuel Gradén, Tom Brander
- *
  */
-public class EventArrive extends Event{	
+public class EventCheckout extends Event{
+	private double time;
 	
-	StateStore state;
+	private StateStore state;
 	
-	/**
-	 * When an EventArrive is created the customer is created, the customers id is attached to the event.
-	 * @author Samuel Gradén
-	 * @param state
-	 */
-	public EventArrive(StateStore state) {
-		//System.out.println("EventArrive: Creating...");
-		//System.out.println("=========================================================");
-		Customer customer = state.createCustomer();
-		
+	public EventCheckout(StateStore state,EventQueue EventQueue) {
+		this.time = state.getCurrentTime();
+		//System.out.println("EventCheckout: Created id: " + this.getId());
 		this.state = state;
-		this.setId(customer.getId());
-		//System.out.println("EventArrive: Created id: " + this.getId());
 	}
-	
-	@Override
-	/** run will create the next arrive if there is room for another customer, is will also create its own gatether event
-	 * @param StateStore EventQueue
+	/**
+	 * When running EventCheckout the Queue time for the customer will be calculated. 
+	 * If there is another customer standing in queue its EventCheckout will be created.
+	 * 
 	 * @author Samuel Gradén, Tom Brander
 	 */
-	public void run(StateStore state,EventQueue EventQueue) {
-		
-		//System.out.println(this.state.getCustomer(this.getId()).getArrival());
-		state.setCurrentTimte(this.getTime());
-		super.run(state, EventQueue);
-		//System.out.println("EventArrive: runs, with id: "+  this.getId());
-		
-		if(state.getCurrentTime()<state.getCloseTime()) {
-			
-			if(state.getMaxCustomers()>= state.getCurrentCustomers()) {
-
-				//System.out.println("HALLLLLLÅÅÅÅ!!!!!");
-				EventQueue.add(new EventArrive(state));
-				EventGather EG = new EventGather(state);
-				EG.setId(this.getId());
-				//System.out.println("EventGather sets id: " + this.getId());
-				EventQueue.add(EG);
-				state.addCustomer();
-
-			//the store is full
-			}else {
-				//System.out.println("Butiken är full");
-				EventQueue.add(new EventArrive(state));
-				state.addMissedCustomer();
-
-			}
-		
-		}else {
-			//System.out.println("Affären stänger;");
-			EventClose EClose = new EventClose(state, EventQueue);
-			EventQueue.add(EClose);
-		}
-	}
 	@Override
-	public String getName() {
-		return "Arrive";
+	public void run(StateStore state,EventQueue EventQueue) {
+		state.setCurrentTimte(this.getTime());
+		//System.out.println("EventCheckout runs id: " + this.getId());
+	//	System.out.println("=========================================================");
+		super.run(state, EventQueue);
+		//this.state = state;
+		int id = this.getId();
+		state.getCustomer(id).setQueueTime(state.getCurrentTime() - (state.getCustomer(id).getArrival() + state.getCustomer(id).getGather()));
+		
+		state.removeFirst();
+		state.increseNumOfFreeCounter();
+		
+		if(state.size()>0) {
+			int newID = state.first().getId();
+			EventCheckout EC = new EventCheckout(state,EventQueue);
+			EC.setId(newID);
+			EventQueue.add(EC);
+			state.decreseNumOfFreeCounter();
+			
+		}
+		
 	}
 	
 	@Override
-	/**
-	 * @return the time of the corresponding customer arrive time
-	 */
-	public double getTime() {
-		return this.state.getCustomer(this.getId()).getArrival();
+	public String getName() {
+		return "Checkout";
 	}
+	
+	@Override
+	public double getTime() {
+		return this.time;
+		
+	}
+
 }
