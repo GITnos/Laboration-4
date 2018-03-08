@@ -11,8 +11,9 @@ public class EventEnd extends Event{
 
 	@Override
 	public void run(StateStore state,EventQueue EventQueue){
-		super.run(state, EventQueue);
+		//super.run(state, EventQueue);
 		//System.out.println("Simulering är avslutad");
+	
 	}
 	
 	@Override
@@ -24,7 +25,7 @@ public class EventEnd extends Event{
 	 */
 	@Override
 	public double getTime() {
-		return Integer.MAX_VALUE;
+		return 999;
 	} 
 
 }
