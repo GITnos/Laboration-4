@@ -1,5 +1,7 @@
 package lab5.Events;
 
+import java.util.Observable;
+
 import lab5.State.Customer;
 import lab5.State.StateStore;
 /**
@@ -17,12 +19,16 @@ public class EventArrive extends Event{
 	 * @param state
 	 */
 	public EventArrive(StateStore state) {
+		
+		
 		//System.out.println("EventArrive: Creating...");
 		//System.out.println("=========================================================");
 		Customer customer = state.createCustomer();
-		
 		this.state = state;
 		this.setId(customer.getId());
+		double time = customer.getArrival();
+		this.setTime(time);
+		
 		//System.out.println("EventArrive: Created id: " + this.getId());
 	}
 	
@@ -33,21 +39,25 @@ public class EventArrive extends Event{
 	 */
 	public void run(StateStore state,EventQueue EventQueue) {
 		
-		//System.out.println(this.state.getCustomer(this.getId()).getArrival());
-		state.setCurrentTimte(this.getTime());
 		super.run(state, EventQueue);
+		
+		
+		//System.out.println(this.state.getCustomer(this.getId()).getArrival());
+		
+		
 		//System.out.println("EventArrive: runs, with id: "+  this.getId());
 		
 		if(state.getCurrentTime()<state.getCloseTime()) {
 			
-			if(state.getMaxCustomers()>= state.getCurrentCustomers()) {
+			if(state.getMaxCustomers() > state.getCurrentCustomers()) {
 
 				//System.out.println("HALLLLLLÅÅÅÅ!!!!!");
 				EventQueue.add(new EventArrive(state));
-				EventGather EG = new EventGather(state);
+				EventGather EG = new EventGather(state,this.getId());
 				EG.setId(this.getId());
 				//System.out.println("EventGather sets id: " + this.getId());
 				EventQueue.add(EG);
+				
 				state.addCustomer();
 
 			//the store is full
@@ -60,20 +70,13 @@ public class EventArrive extends Event{
 		
 		}else {
 			//System.out.println("Affären stänger;");
-			EventClose EClose = new EventClose(state, EventQueue);
-			EventQueue.add(EClose);
+			
 		}
+
 	}
 	@Override
 	public String getName() {
 		return "Arrive";
 	}
 	
-	@Override
-	/**
-	 * @return the time of the corresponding customer arrive time
-	 */
-	public double getTime() {
-		return this.state.getCustomer(this.getId()).getArrival();
-	}
 }
