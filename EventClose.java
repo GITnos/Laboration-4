@@ -16,7 +16,8 @@ public class EventClose extends Event{
 	 * @param EventQueue
 	 */
 	public EventClose(StateStore state, EventQueue EventQueue) {
-		this.time = state.getCurrentTime();
+		this.time = state.getCloseTime();
+		this.setId(-1);
 		
 	}
 	/**
@@ -25,9 +26,12 @@ public class EventClose extends Event{
 	 */
 	@Override
 	public void run(StateStore state,EventQueue EventQueue) {
+
 		super.run(state, EventQueue);
 		EventEnd EE = new EventEnd();
 		EventQueue.add(EE);
+		
+		
 	}
 	
 	@Override
