@@ -14,7 +14,7 @@ public class StateStore extends State{
 	private int numOfCounter = 4;
 	
 	private int numOfFreeCounter;
-	private double lastCheckedTime = 0;
+	private double lastCheckedTime = 0.0;
 
 	private double freeCounterTime = 0;
 
@@ -232,7 +232,7 @@ public class StateStore extends State{
 	 * @return amount of checked out customers
 	 */
 	public int getCheckedOutCustomers() {
-		return listSize() - getCurrentCustomers() - getMissedCustomer();
+		return listSize()-1 - getCurrentCustomers() - getMissedCustomer();
 	}
 	/**
 	 * 
