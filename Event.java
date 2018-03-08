@@ -9,7 +9,8 @@ import lab5.State.StateStore;
  */
 public class Event extends Observable{
 	
-
+	
+	private double time;
 	private int id;
 	/**
 	 * Every event has a run method which is run by the simulation, run will also update the current time
@@ -17,14 +18,16 @@ public class Event extends Observable{
 	 * @author Samuel Gradén, Tom Brander
 	 */
 	public void run(StateStore state, EventQueue EventQueue) {
-		state.setFreeCounterTime((state.getCurrentTime()-state.getLastCheckedTime())*state.getNumOfFreeCounter());
-		//System.out.println("state.getCurrentTime - state.GetLasteCheckedTime = " +(state.getCurrentTime()-state.getLastCheckedTime())+" * " +state.getNumOfFreeCounter());
+		
+		state.setCurrentTimte(this.getTime());
+		state.setFreeCounterTime((state.getCurrentTime() - state.getLastCheckedTime())*state.getNumOfFreeCounter());
 		state.setLastCheckedTime(state.getCurrentTime());
-		//setChanged();
-		//notifyObservers();
+		state.setCurrentEvent(this);
+		state.upView();
+		
 	}
 	public String getName() {
-		return "";
+		return "Event";
 	}
 	public int getId() {
 		return id;
@@ -38,6 +41,9 @@ public class Event extends Observable{
 	 * @return the time when this event shall start
 	 */
 	public double getTime() {
-		return 0;
+		return this.time;
+	}
+	public void setTime(double time) {
+		this.time = time;
 	}
 }
