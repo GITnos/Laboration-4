@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Observable;
 
 import lab5.Events.EventQueue;
+import lab5.Events.EventStart;
 import lab5.State.Customer;
 import lab5.State.StateStore;
 /**
@@ -51,13 +52,14 @@ public class Sim extends Observable{
 	 */
 	public void runSim() {
 
-
+		//	eventQ.next().run(state, eventQ);
 		while(!(eventQ.isEnd())){
-
 			//System.out.println("Jag kör");
+			//state.upView();
 			eventQ.next().run(state,eventQ);
-			setChanged();
-			notifyObservers();
+			//eventQ.sort();
+			
+			
 			//System.out.println("Current Time: " + state.getCurrentTime());
 			//System.out.println("Kassorna var lediga: "+ state.getFreeCounterTime());
 		}
