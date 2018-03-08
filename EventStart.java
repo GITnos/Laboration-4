@@ -11,6 +11,7 @@ import lab5.State.StateStore;
 public class EventStart extends Event{
 	public EventStart() {
 		//System.out.println("EventStart: Created");
+		this.setTime(0);
 	}
 	@Override
 	/**
@@ -19,23 +20,20 @@ public class EventStart extends Event{
 	 * @author Samuel Gradén
 	 */
 	public void run(StateStore state,EventQueue EventQueue){
-		//System.out.println("EventStart: Run");
+		
 		super.run(state, EventQueue);
+		
 		EventQueue.add(new EventArrive(state));
 		EventClose EC = new EventClose(state,EventQueue);
 		EventQueue.add(EC);
+		EventEnd EE = new EventEnd();
+		EventQueue.add(EE);
+		
+		
 	}
 	@Override
 	public String getName() {
 		return "Start";
 	}
 	
-	@Override
-	/**
-	 * getTime 
-	 * @return the time 0 to represent the start
-	 */
-	public double getTime() {
-		return 0;
-	}
 }
