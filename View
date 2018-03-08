@@ -5,28 +5,33 @@ import java.util.Observer;
 
 import lab5.Sim;
 import lab5.Events.EventQueue;
+import lab5.Events.EventStart;
 import lab5.State.StateStore;
 
 public class View implements Observer {
-	
+
 	private StateStore state;
 	private EventQueue eventQ;
-	
- // public static void main(String[] args) {
-  //	print(3, "EventArrive", 3, 10, 13, 2, 13.23456, 0.12, 25.384530);
-  //}
-		
+
+	// public static void main(String[] args) {
+	//	print(3, "EventArrive", 3, 10, 13, 2, 13.23456, 0.12, 25.384530);
+	//}
+
 	public View(Sim sim) {
 		this.state = sim.getState();
 		this.eventQ = sim.getEventQueue();
-		sim.addObserver(this);
+		this.state.addObserver(this);
+		
 		printStart();
 	}
 
 	public void update(Observable arg0, Object arg1){
-		print(eventQ.getEvent().getId(), eventQ.getEvent().getName(), state.getNumOfFreeCounter(), state.getCurrentCustomers(), state.getCheckedOutCustomers(), state.getMissedCustomer(), state.getFreeCounterTime(), state.getqTime(), eventQ.getEvent().getTime());
+		if(!(eventQ.getEvent() instanceof EventStart)) {
+			//System.out.println("\nFREETIME VIEW: " + state.getFreeCounterTime());
+			print(state.getCurrentEvent().getId(), state.getCurrentEvent().getName(), state.getNumOfFreeCounter(), state.getCurrentCustomers(), state.getCheckedOutCustomers(), state.getMissedCustomer(), state.getFreeCounterTime(), state.getqTime(), state.getCurrentEvent().getTime());
+		}
 	}
-	
+
 	private static void printStart() {
 		/**c: Antal kassor 
 		 * ledc: Lediga kassor
@@ -39,19 +44,20 @@ public class View implements Observer {
 		 *  kt: Kötid
 		 *  T: currentTime
 		 *  id: Customer id
-		*/
-		System.out.println("id        e        ledc        I        h        m        ledct        kt        T");
+		 */
+		System.out.println("Kund       e        ledc        I        $        :(        ledct        kt        T");
+		System.out.println("START							   		    0.00");
 		//System.out.println("1337    2.30     1.30    "+roundDec(1.2396534563456457,2)+"     i     i     i     i");
 	}
-	
+
 	public static void print(int customerid, String eventName, int numFreeCounters, int customers, int checkedOutCustomers, int missedCustomers, double counterFreeTime, double queueTime, double currentTime) {
-		
+
 		while (eventName.length() < 13) {
 			eventName += " ";
 			eventName = " "+eventName;
 		}
-		
-		System.out.println();
+
+
 		System.out.print(customerid);
 		System.out.print("   ");
 		System.out.print(eventName);
@@ -69,20 +75,21 @@ public class View implements Observer {
 		System.out.print(roundTime(queueTime));
 		System.out.print("     ");
 		System.out.print(roundTime(currentTime));
+		System.out.println();
 		//System.print
 	}
-	
+
 	private static void printEnd() {
-		
+
 	}
-	
+
 	private static double roundTime(double n) {
 		// Rounds the number n to d number of decimals.
-  		double r;
-  		r = Math.round(n*Math.pow(10, 1))/Math.pow(10, 1);
-  		return r;
+		double r;
+		r = Math.round(n*Math.pow(10, 2))/Math.pow(10, 2);
+		return r;
 	}
-	
-	
-	
+
+
+
 }
