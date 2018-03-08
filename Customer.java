@@ -32,21 +32,12 @@ public class Customer {
 		return arrival;
 	}
 
-	public double getArrGat() {
-		return this.getArrival() + this.getGather();
-	}
 	public double getGather() {
 		return gather;
 	}
 
 	public double getCheckout() {
 		return checkout;
-	}
-	public double getArrGatQue() {
-		return this.arrival + this.gather + this.queueTime;
-	}
-	public double getAllTime() {
-		return this.arrival + this.gather + this.checkout;
 	}
 	public double getQueueTime() {
 		return this.queueTime;
