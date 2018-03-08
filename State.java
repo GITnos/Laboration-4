@@ -1,14 +1,18 @@
 package lab5.State;
 
 import java.util.ArrayList;
+import java.util.Observable;
 
 import lab5.Sim;
+import lab5.Events.Event;
 /**
  * Represents the base of the state of the store, this is built up upon by StateStore
  * @author Samuel Graden, Tom Brander
  *
  */
-public class State {
+public class State extends Observable{
+	
+	private Event currentEvent;
 	
 	private double currentTime = 0;
 	private long seed;
@@ -56,6 +60,16 @@ public class State {
 	}
 	public void setCurrentTimte(double time) {
 		this.currentTime = time;
+	}
+	public Event getCurrentEvent(){
+		return this.currentEvent;
+	}
+	public void setCurrentEvent(Event e) {
+		this.currentEvent = e;
+	}
+	public void upView() {
+		setChanged();
+		notifyObservers();
 	}
 	
 }
