@@ -28,7 +28,7 @@ public class View implements Observer {
 	public void update(Observable arg0, Object arg1){
 		if(!(eventQ.getEvent() instanceof EventStart)) {
 			//System.out.println("\nFREETIME VIEW: " + state.getFreeCounterTime());
-			print(state.getCurrentEvent().getId(), state.getCurrentEvent().getName(), state.getNumOfFreeCounter(), state.getCurrentCustomers(), state.getCheckedOutCustomers(), state.getMissedCustomer(), state.getFreeCounterTime(), state.getqTime(), state.getCurrentEvent().getTime());
+			print(state.getCurrentEvent().getId(), state.getCurrentEvent().getName(), state.getNumOfFreeCounter(), state.getCurrentCustomers(), state.getCheckedOutCustomers(), state.getMissedCustomer(), state.getFreeCounterTime(), state.getqTime(), state.getCurrentEvent().getTime(),state.getQueue());
 		}
 	}
 
@@ -41,7 +41,7 @@ public class View implements Observer {
 		 *  h: Hanterade kunder
 		 *  I: customers i butiken
 		 *  e: Event namn
-		 *  kt: Kötid
+		 *  kt: KÃ¶tid
 		 *  T: currentTime
 		 *  id: Customer id
 		 */
@@ -50,7 +50,7 @@ public class View implements Observer {
 		//System.out.println("1337    2.30     1.30    "+roundDec(1.2396534563456457,2)+"     i     i     i     i");
 	}
 
-	public static void print(int customerid, String eventName, int numFreeCounters, int customers, int checkedOutCustomers, int missedCustomers, double counterFreeTime, double queueTime, double currentTime) {
+	public static void print(int customerid, String eventName, int numFreeCounters, int customers, int checkedOutCustomers, int missedCustomers, double counterFreeTime, double queueTime, double currentTime,String queue) {
 
 		while (eventName.length() < 13) {
 			eventName += " ";
@@ -75,6 +75,8 @@ public class View implements Observer {
 		System.out.print(roundTime(queueTime));
 		System.out.print("     ");
 		System.out.print(roundTime(currentTime));
+		System.out.print("     ");
+		System.out.print(queue);
 		System.out.println();
 		//System.print
 	}
