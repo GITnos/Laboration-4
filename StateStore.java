@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 /**
  * Represent the Store
- * @author Samuel Gradén
+ * @author Samuel GradÃ©n
  */
 public class StateStore extends State{
 	
@@ -15,7 +15,10 @@ public class StateStore extends State{
 	
 	private int numOfFreeCounter;
 	private double lastCheckedTime = 0.0;
+	private double queueTime = 0.0;
 
+//	private ArrayList<Integer> queue = new ArrayList<Integer>();
+	
 	private double freeCounterTime = 0;
 
 	private int maxCustomers = 50;
@@ -47,7 +50,7 @@ public class StateStore extends State{
 	/**
 	 * createCustomer creates a customer with the CreateCustomer object,
 	 * @return Customer
-	 * @author Samuel Gradén
+	 * @author Samuel GradÃ©n
 	 */
 	public Customer createCustomer() {
 		Customer customer = customerCreator.newCustomer(getArrival(), getCheckout(), getGather());
@@ -114,11 +117,7 @@ public class StateStore extends State{
 	 * @return sum of queue times for all customers
 	 */
 	public double getqTime() {
-		int n=0;
-		for (int i = 0; i < customerList.size(); i++) {
-			n+=customerList.get(i).getQueueTime();
-		}
-		return n;
+		return this.queueTime;
 	}
 	
 	/**
@@ -168,6 +167,11 @@ public class StateStore extends State{
 	public int size() {
 		return this.fifo.size();
 	}
+	
+	public String getQueue(){
+		return fifo.toString();
+		
+	}
 	/**
 	 * help method for keeping track the freeCounterTime
 	 * @return time
@@ -179,6 +183,15 @@ public class StateStore extends State{
 	public void setLastCheckedTime(double lastCheckedTime) {
 		this.lastCheckedTime = lastCheckedTime;
 	}
+	
+	public double getQueueTime() {
+		return queueTime;
+	}
+
+	public void addQueueTime(double queueTime) {
+		this.queueTime = this.queueTime + queueTime;
+	}
+	
 	/**
 	 * 
 	 * @return the amount of time the counters have been empty
@@ -241,7 +254,7 @@ public class StateStore extends State{
 	public String getEventName() {
 		String s = "";
 		
-	// Skriv in dina grejjer här, Samuel of house Tarly
+	// Skriv in dina grejjer hÃ¤r, Samuel of house Tarly
 		
 		return s;
 	}
