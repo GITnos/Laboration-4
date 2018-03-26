@@ -1,4 +1,4 @@
-package lab5.GUI;
+package lab5.gui;
 
 import java.util.Observable;
 import java.util.Observer;
@@ -33,50 +33,44 @@ public class View implements Observer {
 	}
 
 	private static void printStart() {
-		/**c: Antal kassor 
-		 * ledc: Lediga kassor
-		 *  ledct: LedigTid
-		 *  I: Kunder i butiken
-		 *  m: Missade kunder
-		 *  h: Hanterade kunder
-		 *  I: customers i butiken
-		 *  e: Event namn
-		 *  kt: KÃ¶tid
-		 *  T: currentTime
-		 *  id: Customer id
-		 */
-		System.out.println("Kund       e        ledc        I        $        :(        ledct        kt        T");
-		System.out.println("START							   		    0.00");
+		String s = "";
+		for (int i = 0; i < margin-1; i++) {
+			s+=" ";
+		}
+		System.out.println("T"+s+"e   "+s+"k        led        ledT      I"+s+"$        :("+s+"köT        köar     Kö");
+		System.out.println("0.00      START");
 		//System.out.println("1337    2.30     1.30    "+roundDec(1.2396534563456457,2)+"     i     i     i     i");
 	}
 
+	private static int margin = 10;
 	public static void print(int customerid, String eventName, int numFreeCounters, int customers, int checkedOutCustomers, int missedCustomers, double counterFreeTime, double queueTime, double currentTime,String queue) {
-
+		String tt="";
 		while (eventName.length() < 13) {
 			eventName += " ";
-			eventName = " "+eventName;
 		}
 
 
-		System.out.print(customerid);
-		System.out.print("   ");
-		System.out.print(eventName);
-		System.out.print("   ");
-		System.out.print(numFreeCounters);
-		System.out.print("         ");
-		System.out.print(customers);
-		System.out.print("       ");
-		System.out.print(checkedOutCustomers);
-		System.out.print("       ");
-		System.out.print(missedCustomers);
-		System.out.print("         ");
-		System.out.print(roundTime(counterFreeTime));
-		System.out.print("         ");
-		System.out.print(roundTime(queueTime));
-		System.out.print("     ");
-		System.out.print(roundTime(currentTime));
-		System.out.print("     ");
-		System.out.print(queue);
+		System.out.print(adjustSize(roundTime(currentTime), margin));
+//		System.out.print("   ");
+		System.out.print(adjustSize(eventName,margin));
+//		System.out.print("   ");
+		System.out.print(adjustSize(customerid,margin));
+//		System.out.print("   ");
+		System.out.print(adjustSize(numFreeCounters,margin));
+//		System.out.print("         ");
+		System.out.print(adjustSize(roundTime(counterFreeTime), margin));
+//		System.out.print("         ");
+		System.out.print(adjustSize(customers,margin));
+//		System.out.print("       ");
+		System.out.print(adjustSize(checkedOutCustomers,margin));
+//		System.out.print("       ");
+		System.out.print(adjustSize(missedCustomers,margin));
+//		System.out.print("         ");
+		System.out.print(adjustSize(roundTime(queueTime),margin));
+//		System.out.print("     ");
+		System.out.print(adjustSize(queue.length(), margin));
+//		System.out.print("     ");
+		System.out.print(adjustSize(queue,margin));
 		System.out.println();
 		//System.print
 	}
@@ -90,6 +84,21 @@ public class View implements Observer {
 		double r;
 		r = Math.round(n*Math.pow(10, 2))/Math.pow(10, 2);
 		return r;
+	}
+	
+	private static String adjustSize(String s, int size) {
+		while (s.length()<size){
+			s+=" ";
+		}
+		return s;
+	}
+	
+	private static String adjustSize(double d, int size) {
+		return adjustSize(Double.toString(d),size);
+	}
+	
+	private static String adjustSize(int i, int size) {
+		return adjustSize(Integer.toString(i), size);
 	}
 
 
