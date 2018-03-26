@@ -9,9 +9,10 @@ import java.util.ArrayList;
 public class StateStore extends State{
 	
 	private FIFO fifo = new FIFO();
-
 	private double closeTime =  10.00;
 	private int numOfCounter = 4;
+	private Boolean isOpen = true;
+	private int qdCustomers = 0;
 	
 	private int numOfFreeCounter;
 	private double lastCheckedTime = 0.0;
@@ -159,6 +160,7 @@ public class StateStore extends State{
 	 */
 	public void add(Customer c) {
 		this.fifo.add(c);
+		qdCustomers++;
 	}
 	/**
 	 * 
@@ -269,5 +271,17 @@ public class StateStore extends State{
 		
 		return n;
 	}
-
+	
+	public Boolean isOpen() {
+		return isOpen;
+	}
+	
+	public void flipIsOpen(){
+		isOpen=!isOpen;
+	}
+	
+	public int getQdCustomers() {
+		return qdCustomers;
+	}
+	
 }
