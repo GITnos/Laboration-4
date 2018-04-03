@@ -54,7 +54,7 @@ public class StateStore extends State{
 	 * @author Samuel GradÃ©n
 	 */
 	public Customer createCustomer() {
-		Customer customer = customerCreator.newCustomer(getArrival(), getCheckout(), getGather());
+		Customer customer = customerCreator.newCustomer();
 		this.customerList.add(customer);
 		return customer;
 	}
@@ -145,6 +145,9 @@ public class StateStore extends State{
 		this.numOfFreeCounter++;
 	}
 
+	public int currentQ() {
+		return fifo.size();
+	}
 	/**
 	 * 
 	 * @return the first in line in the queue
