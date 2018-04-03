@@ -14,14 +14,9 @@ public class EventCheckout extends Event{
 
 	public EventCheckout(StateStore state,EventQueue EventQueue) {
 		this.state = state;
-		double checkoutTime = state.getCustomer(this.getId()).getCheckout();
-		double gatherTime = state.getCustomer(this.getId()).getGather();
-		double arriveTime = state.getCustomer(this.getId()).getArrival();
-		//System.out.println("EventCheckout: Created id: " + this.getId());
-	//	qtime = state.getCurrentTime() - state.getCustomer(this.getId()).getArrival() -  state.getCustomer(this.getId()).getGather();
-		this.time = state.getCurrentTime() + state.getCustomer(this.getId()).getCheckout();
-		qtime = time - checkoutTime - gatherTime - arriveTime;
-		state.addqTime(qtime);
+		
+		this.time = state.getCurrentTime()+state.getCheckout();
+		qtime = this.time - state.getCurrentTime();
 	}
 	/**
 	 * When running EventCheckout the Queue time for the customer will be calculated. 
@@ -32,10 +27,7 @@ public class EventCheckout extends Event{
 	@Override
 	public void run(StateStore state,EventQueue EventQueue) {		
 		super.run(state, EventQueue);
-		int id = this.getId();
-		state.increseNumOfFreeCounter();
 		state.setCurrentTimte(this.getTime());
-		state.addqTime(qtime);
 		if(state.size()>0) {
 			// If there are customers queueing...
 			int newID = state.first().getId();
@@ -45,11 +37,8 @@ public class EventCheckout extends Event{
 			state.decreseNumOfFreeCounter();
 			state.removeFirst();
 		}
-		//System.out.println("CurrentTime:" + state.getCurrentTime());
-		
+		state.increseNumOfFreeCounter();
 		state.removeCustomer();
-		
-	
 	}
 	@Override
 	public String getName() {
