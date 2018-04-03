@@ -16,7 +16,7 @@ public class StateStore extends State{
 	
 	private int numOfFreeCounter;
 	private double lastCheckedTime = 0.0;
-	private double queueTime = 0.0;
+	private double queueTime = 0.0d;
 
 //	private ArrayList<Integer> queue = new ArrayList<Integer>();
 	
@@ -121,6 +121,10 @@ public class StateStore extends State{
 		return this.queueTime;
 	}
 	
+	public void addqTime(double time) {
+		queueTime += time;
+	}
+	
 	/**
 	 * 
 	 * @return the number of free counters
@@ -170,10 +174,11 @@ public class StateStore extends State{
 		return this.fifo.size();
 	}
 	
-	public String getQueue(){
+	public String getQueueString(){
 		return fifo.toString();
 		
 	}
+
 	/**
 	 * help method for keeping track the freeCounterTime
 	 * @return time
@@ -236,7 +241,7 @@ public class StateStore extends State{
 	}
 	/**
 	 * 
-	 * @return the size of the queue
+	 * @return the number of customers currently in the store
 	 */
 	public int listSize() {
 		return this.customerList.size();
@@ -249,29 +254,11 @@ public class StateStore extends State{
 	public int getCheckedOutCustomers() {
 		return listSize()-1 - getCurrentCustomers() - getMissedCustomer();
 	}
-	/**
-	 * 
-	 * @return the name of latest run event
-	 */
-	public String getEventName() {
-		String s = "";
-		
-	// Skriv in dina grejjer hÃ¤r, Samuel of house Tarly
-		
-		return s;
-	}
-	/**
-	 * 
-	 * @return the id of the latest run event
-	 */
-	public int getEventid() {
-		int n = 0;
-		
-
-		
-		return n;
-	}
 	
+	/**
+	 * 
+	 * @return true if the store is open
+	 */
 	public Boolean isOpen() {
 		return isOpen;
 	}
@@ -280,6 +267,10 @@ public class StateStore extends State{
 		isOpen=!isOpen;
 	}
 	
+	/**
+	 * 
+	 * @return amount of customers currently queueing
+	 */
 	public int getQdCustomers() {
 		return qdCustomers;
 	}
