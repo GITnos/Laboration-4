@@ -18,13 +18,17 @@ public class Event extends Observable{
 	 * @author Samuel Gradén, Tom Brander
 	 */
 	public void run(StateStore state, EventQueue EventQueue) {
-		
 		state.setCurrentTimte(this.getTime());
 		state.setFreeCounterTime((state.getCurrentTime() - state.getLastCheckedTime())*state.getNumOfFreeCounter());
+		
+		
+		state.addqTime((state.getCurrentTime() - state.getLastCheckedTime())*state.size());
+		
+		
+		
 		state.setLastCheckedTime(state.getCurrentTime());
 		state.setCurrentEvent(this);
 		state.upView();
-		
 	}
 	public String getName() {
 		return "Event";
