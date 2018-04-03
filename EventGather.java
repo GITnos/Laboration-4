@@ -11,6 +11,7 @@ import lab5.State.StateStore;
 public class EventGather extends Event {
 
 	private StateStore state;
+	private double time = 0.0d;
 
 	/**
 	 * The constructor of EventGather
@@ -20,6 +21,7 @@ public class EventGather extends Event {
 	 */
 	public EventGather(StateStore state) {
 		this.state = state;
+		time = state.getCurrentTime() + state.getGather();
 	}
 
 	@Override
@@ -28,6 +30,7 @@ public class EventGather extends Event {
 		super.run(state, EventQueue);
 		this.state = state;
 		if (state.getNumOfFreeCounter() > 0) {
+			//  if there are any free counters...
 			EventCheckout EC = new EventCheckout(state, EventQueue);
 			EC.setId(this.getId());
 			EventQueue.add(EC);
@@ -47,7 +50,7 @@ public class EventGather extends Event {
 	@Override
 	public double getTime() {
 		// Returns arrive + gather time of customer with the same id
-		return this.state.getCustomer(this.getId()).getArrival() + this.state.getCustomer(this.getId()).getGather();
+		return time;
 	}
 
 }
