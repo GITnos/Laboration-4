@@ -28,7 +28,6 @@ public class Optimize {
 		public int metod2(double dLower, double dUpper, double pLower, double pUpper, double dLambda) {
 			int c = 1;
 			// Number of counters
-			// Missed customers
 			StateStore s = new StateStore(dLower, dUpper, pLower, pUpper, dLambda, c);
 			while (true) {
   			s = metod1(s);
@@ -43,10 +42,19 @@ public class Optimize {
 		
 		public metod3(double dLower, double dUpper, double pLower, double pUpper, double dLambda, long lSeed) {
 			Random r;
-			while (true) {
-				r = Random(lSeed);
+			int numOptimalCounters;
+			// Largest found optimal number of counters
+			int numCounters = 0;
+			// Current optimal number of counters
+			int numLoops = 1000;
+			// How many times the function should loop
+			for (int i = 0; numLoops>i; i++) {
+				r = new Random(lSeed);
+				numOptimalCounters = metod2(dLower, dUpper, pLower, pUpper, dLambda, r);
+				if (numCounters>numOptimalCounters){
+					numOptimalCounters = numCounters;
+				}
 			}
-			metod2(dLower, dUpper, pLower, pUpper, dLambda);
 		}
 		
     private int optimizeOneSim(){
@@ -91,3 +99,4 @@ public class Optimize {
     }
 
 }
+
