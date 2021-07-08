@@ -1,10 +1,17 @@
 package lab5;
 
-public class Main {
+import java.util.Observable;
+
+import lab5.GUI.View;
+
+public class Main extends Observable{
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
+		
+		Sim testSim = new Sim(2,1234);
+		View view = new View(testSim);
+		testSim.runSim();
+		
 	}
 
 }

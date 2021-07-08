@@ -1,18 +1,38 @@
 package lab5.Events;
-import lab5.State.Customer;
+import java.util.Observable;
+
+import lab5.State.StateStore;
 /**
- * 
- * @author samuelgraden
+ * This class is the general description of an event, all other events build up upon this one
+ * @author Samuel Graden, Tom Brander
  *
  */
-public class Event {
-
+public class Event extends Observable{
+	
+	
+	private double time;
 	private int id;
-
-	public void run(Customer customer) {
+	/**
+	 * Every event has a run method which is run by the simulation, run will also update the current time
+	 * @param
+	 * @author Samuel Gradén, Tom Brander
+	 */
+	public void run(StateStore state, EventQueue EventQueue) {
+		state.setCurrentTimte(this.getTime());
+		state.setFreeCounterTime((state.getCurrentTime() - state.getLastCheckedTime())*state.getNumOfFreeCounter());
 		
+		
+		state.addqTime((state.getCurrentTime() - state.getLastCheckedTime())*state.size());
+		
+		
+		
+		state.setLastCheckedTime(state.getCurrentTime());
+		state.setCurrentEvent(this);
+		state.upView();
 	}
-
+	public String getName() {
+		return "Event";
+	}
 	public int getId() {
 		return id;
 	}
@@ -20,8 +40,14 @@ public class Event {
 	public void setId(int id) {
 		this.id = id;
 	}
-	
+	/**
+	 * 
+	 * @return the time when this event shall start
+	 */
 	public double getTime() {
-		return 0;
+		return this.time;
+	}
+	public void setTime(double time) {
+		this.time = time;
 	}
 }

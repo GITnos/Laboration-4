@@ -1,0 +1,103 @@
+package lab5.gui;
+
+import java.util.Observable;
+import java.util.Observer;
+
+import lab5.Sim;
+import lab5.Events.EventQueue;
+import lab5.Events.EventStart;
+import lab5.State.StateStore;
+
+public class View implements Observer {
+
+	private StateStore state;
+	private EventQueue eventQ;
+
+	// public static void main(String[] args) {
+	//	print(3, "EventArrive", 3, 10, 13, 2, 13.23456, 0.12, 25.384530);
+	//}
+
+	public View(Sim sim) {
+		this.state = sim.getState();
+		this.eventQ = sim.getEventQueue();
+		this.state.addObserver(this);
+		
+		printStart();
+	}
+
+	public void update(Observable arg0, Object arg1){
+		if(!(eventQ.getEvent() instanceof EventStart)) {
+			//System.out.println("\nFREETIME VIEW: " + state.getFreeCounterTime());
+			print(state.getCurrentEvent().getTime(), state.getCurrentEvent().getName(), state.getCurrentEvent().getId(), state.isOpen(), state.getNumOfFreeCounter(), state.getFreeCounterTime(), state.getCurrentCustomers(), state.getCheckedOutCustomers(), state.getMissedCustomer(), state.getQdCustomers(), state.getqTime(), state.getQueue());
+		}
+	}
+
+	private static void printStart() {
+		String s = "";
+		for (int i = 0; i < margin-1; i++) {
+			s+=" ";
+		}
+		System.out.println("T"+s+"e   "+s+"k"+s+"?        led        ledT      I"+s+"$        :(        köat      köT        köar     Kö");
+		System.out.println("0.00      START");
+		//System.out.println("1337    2.30     1.30    "+roundDec(1.2396534563456457,2)+"     i     i     i     i");
+	}
+
+	private static int margin = 10;
+	public static void print(double currentTime, String eventName, int customerid, Boolean isOpen, int numFreeCounters, double counterFreeTime, int customers, int checkedOutCustomers, int missedCustomers, int queuedCustomers, double queueTime, String queue) {
+		String tt="";
+		while (eventName.length() < 13) {
+			eventName += " ";
+		}
+		String s;
+		if (isOpen) {
+			s="Ö";
+		}else {
+			s="S";
+		}
+		
+		System.out.print(adjustSize(roundTime(currentTime), margin));
+		System.out.print(adjustSize(eventName,margin));
+		System.out.print(adjustSize(customerid,margin));
+		System.out.print(adjustSize(s,margin));
+		System.out.print(adjustSize(numFreeCounters,margin));
+		System.out.print(adjustSize(roundTime(counterFreeTime), margin));
+		System.out.print(adjustSize(customers,margin));
+		System.out.print(adjustSize(checkedOutCustomers,margin));
+		System.out.print(adjustSize(missedCustomers,margin));
+		System.out.print(adjustSize(queuedCustomers,margin));
+		System.out.print(adjustSize(roundTime(queueTime),margin));
+		System.out.print(adjustSize(queue.length(), margin));
+		System.out.print(adjustSize(queue,margin));
+		System.out.println();
+		//System.print
+	}
+
+	private static void printEnd() {
+
+	}
+
+	private static double roundTime(double n) {
+		// Rounds the number n to d number of decimals.
+		double r;
+		r = Math.round(n*Math.pow(10, 2))/Math.pow(10, 2);
+		return r;
+	}
+	
+	private static String adjustSize(String s, int size) {
+		while (s.length()<size){
+			s+=" ";
+		}
+		return s;
+	}
+	
+	private static String adjustSize(double d, int size) {
+		return adjustSize(Double.toString(d),size);
+	}
+	
+	private static String adjustSize(int i, int size) {
+		return adjustSize(Integer.toString(i), size);
+	}
+
+
+
+}

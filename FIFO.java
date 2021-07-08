@@ -1,19 +1,24 @@
-package lab5.state;
+package lab5.State;
 
 import java.util.ArrayList;
 import java.util.NoSuchElementException;
+import java.util.Observable;
 import java.lang.ClassCastException;
 
-
+/**
+ * Represents the queue for the counters
+ * @author Tom Brander
+ *
+ */
 public class FIFO {
 
-	private ArrayList<Object> fifoArray = new ArrayList<Object>();
+	private ArrayList<Customer> fifoArray = new ArrayList<Customer>();
 	private static int ms = 0;
 
 	public int size() {
 		return fifoArray.size();
 	}
-	public void add(Object item) {
+	public void add(Customer item) {
 		fifoArray.add(item);
 		if (ms < fifoArray.size()) {
 			ms += 1;
@@ -23,11 +28,13 @@ public class FIFO {
 		if (fifoArray.size() > 0) {
 			fifoArray.remove(0);
 		}else {
+			System.out.println("SpecialFall");
 			throw new NoSuchElementException();
 		}
 	}
-	public Object first() throws NoSuchElementException {
-		if (fifoArray.size() > 0) {
+	public Customer first() throws NoSuchElementException {
+		if (fifoArray.size() >0) {
+			//System.out.println("First in FIFO is:" + fifoArray.get(0));
 			return fifoArray.get(0);
 		}else {
 			throw new NoSuchElementException();
@@ -43,12 +50,20 @@ public class FIFO {
 			return true;
 		}
 	}
+
 	public String toString() {
-		String s = "Queue: ";
-		for(int i = 0; i < fifoArray.size(); i++) {
-			s = s + "(" + String.valueOf(fifoArray.get(i)) + ") ";
+		if(fifoArray.size()== 0){
+			return "[]";
 		}
-		return s;
+		String s = "[";
+		if(fifoArray.size() == 1){
+			return s + fifoArray.get(0).getId() + "]";
+		}
+		s = s + fifoArray.get(0).getId();
+		for(int i = 1; i < fifoArray.size(); i++) {
+			s = s + "," + fifoArray.get(i).getId();
+		}
+		return s + "]";
 	}
 	public boolean equals(Object f) throws ClassCastException {
 		if (f instanceof FIFO) {
